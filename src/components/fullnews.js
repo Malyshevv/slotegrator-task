@@ -34,10 +34,10 @@ function FullNews() {
   return (
     <main className="main-content">
     <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><Link to="/">Home</Link></li>
-        <li class="breadcrumb-item"><Link to="/news/">News</Link></li>
-        <li class="breadcrumb-item active" aria-current="page">
+      <ol className="breadcrumb">
+        <li className="breadcrumb-item"><Link to="/">Home</Link></li>
+        <li className="breadcrumb-item"><Link to="/news">News</Link></li>
+        <li className="breadcrumb-item active" aria-current="page">
         {(() => {
           if (load === 'false') {
             return <span>Загрузка...</span>;

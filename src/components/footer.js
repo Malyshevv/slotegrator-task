@@ -6,10 +6,12 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import  store  from  "../store.js";
 
-function Header() {
+function  Footer() {
 
-  const [login, setLogin] = useState('false');
+  const userData = store.getState();
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -18,6 +20,17 @@ function Header() {
 
   const handleClose = () => {
    setAnchorEl(null);
+  };
+
+  const handleLogout = (event) =>  {
+    // dispatch action
+    localStorage.removeItem('user');
+
+  	store.dispatch({
+    	type: 'LOGOUT',
+      login: 'guest'
+    });
+    
   };
 
     return (
@@ -47,20 +60,20 @@ function Header() {
                 onClose={handleClose}
               >
               {(() => {
-                if (login === 'false') {
+                if (userData.login === 'guest')  {
                   return (
                     <div>
-                      <MenuItem onClick={handleClose}><NavLink to="/login/">Login</NavLink></MenuItem>
-                      <MenuItem onClick={handleClose}><NavLink to="/users/">All Users </NavLink></MenuItem>
+                      <MenuItem onClick={handleClose}><Link to="/login">Login</Link></MenuItem>
+                      <MenuItem onClick={handleClose}><Link to="/users">All Users </Link></MenuItem>
                     </div>
                   )
                 }
                 else {
                   return(
                     <div>
-                    <MenuItem onClick={handleClose}><NavLink to="/profile/">My Page</NavLink></MenuItem>
-                    <MenuItem onClick={handleClose}><NavLink to="/all-users/">All Users </NavLink></MenuItem>
-                    <MenuItem onClick={handleClose}><NavLink>Logout</NavLink></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to="/profile">My Page</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to="/users">All Users </Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link onClick={handleLogout}>Logout</Link></MenuItem>
                     </div>
                   )
                  }
@@ -78,4 +91,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default Footer;

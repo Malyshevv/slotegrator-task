@@ -2,20 +2,27 @@ import React,{ useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { NavLink,Link } from 'react-router-dom';
 
-import { createBrowserHistory } from "history";
-
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
+import  store  from  "../store.js";
 
-function Header() {
-
-
-
-  const [login, setLogin] = useState('false');
-
+function Header(props) {
+  
+  const userData = store.getState();
   const [anchorEl, setAnchorEl] = useState(null);
+ 
+  const handleLogout = (event) =>  {
+    // dispatch action
+    localStorage.removeItem('user');
+
+  	store.dispatch({
+    	type: 'LOGOUT',
+      login: 'guest'
+    });
+    
+  };
 
   const handleClick = (event) => {
    setAnchorEl(event.currentTarget);
@@ -39,6 +46,7 @@ function Header() {
             <li className="nav-item">
               <Link  className="nav-link" to="/news">News</Link>
             </li>
+            
           </ul>
           <div>
             <Button aria-controls="simple-menu" aria-haspopup="true"  onClick={handleClick}>
@@ -56,20 +64,20 @@ function Header() {
               onClose={handleClose}
             >
             {(() => {
-              if (login === 'false') {
+              if (userData.login === 'guest') {
                 return (
                     <div>
-                      <MenuItem onClick={handleClose}><NavLink to="/login/">Login</NavLink></MenuItem>
-                      <MenuItem onClick={handleClose}><NavLink to="/users/">All Users </NavLink></MenuItem>
+                      <MenuItem onClick={handleClose}><Link to="/login">Login</Link></MenuItem>
+                      <MenuItem onClick={handleClose}><Link to="/users">All Users </Link></MenuItem>
                     </div>
                 )
               }
               else {
                 return(
                   <div>
-                    <MenuItem onClick={handleClose}><NavLink to="/profile/">My Page</NavLink></MenuItem>
-                    <MenuItem onClick={handleClose}><NavLink to="/users/">All Users </NavLink></MenuItem>
-                    <MenuItem onClick={handleClose}><NavLink>Logout</NavLink></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to="/profile">My Page</Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link to="/users">All Users </Link></MenuItem>
+                    <MenuItem onClick={handleClose}><Link onClick={handleLogout}>Logout</Link></MenuItem>
                   </div>
                 )
                }

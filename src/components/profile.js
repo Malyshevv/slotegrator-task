@@ -1,17 +1,25 @@
 import React,{ useState, useEffect } from 'react';
 import { useParams,Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import  store  from  "../store.js";
 
-function Profile() {
+
+function Profile(props) {
 
   const [profile, setProfile] = useState([]);
+  const userData = store.getState();
+
   const [load, setLoad] = useState('false');
 
-  const [login, setLogin] = useState('false');
+  if (userData.login === 'guest')  {
+    props.history.push('/')
+  }
 
   useEffect(() => {
     fetchMyAPIprofile();
+
   }, []);
+
 
   async function fetchMyAPIprofile() {
         let response = await fetch('https://randomuser.me/api/')
@@ -30,7 +38,7 @@ function Profile() {
         return <span>Загрузка...</span>;
       }
       else {
-
+            
             return(
               <div>
 
@@ -44,6 +52,7 @@ function Profile() {
                 <span>Phone: {profile.phone}</span><br/>
                 </center>
               </div>
+              
             )
 
        }
