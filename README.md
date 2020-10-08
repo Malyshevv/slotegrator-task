@@ -13,24 +13,24 @@ This project create for Slotegrator company (Test - Task)
 </p>
 
 ## What i can?
--Home page
--News page (pagination)
--Detail News page
--User list
--Login page
--Profile (use axios for get fake user data)
+-Home page <br/>
+-News page (pagination) <br/>
+-Detail News page <br/>
+-User list <br/>
+-Login page <br/>
+-Profile (use axios for get fake user data) <br/>
 
 
 ## Technology
 
--ReactRoute
--Redux
--MaterialUI
--Bootstrap
--ReactDom
--React(Hooks)
--React paginate
--Axios
+-ReactRoute <br/>
+-Redux <br/>
+-MaterialUI  <br/>
+-Bootstrap <br/>
+-ReactDom <br/>
+-React(Hooks) <br/>
+-React paginate <br/>
+-Axios <br/>
 
 ### `npm init`
 
