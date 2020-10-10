@@ -32,11 +32,11 @@ This project create for Slotegrator company (Test - Task)
 -React paginate <br/>
 -Axios <br/>
 
-### `npm init`
+### `npm install`
 
 This comand required for use , berfore start app. This need for init node module require for work app.
 
-### `npm install` 
+
 
 ### `npm start`
 
