@@ -34,7 +34,7 @@ This project create for Slotegrator company (Test - Task)
 
 ### `npm init`
 
-This comand required for use , berfore start app. This need for init node module require for work app.
+This comand required for use , berfore start app. This need for init npm package require for work app.
 
 
 
