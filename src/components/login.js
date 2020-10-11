@@ -25,7 +25,7 @@ function Login(props) {
         props.history.push('/profile')
     }
     else {
-      alert('Логин или пароль введены не верно!');
+      alert('Login or Password incorrect!');
     }
   };
 
